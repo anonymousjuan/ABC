@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Patient extends Model
 {
@@ -38,4 +39,9 @@ class Patient extends Model
     {
         return $this->belongsTo(Clinic::class);
     }
+
+    public function medicalHistory(): HasOne
+{
+    return $this->hasOne(MedicalHistory::class);
+}
 }
