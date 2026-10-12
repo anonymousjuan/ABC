@@ -39,12 +39,27 @@ class DashboardController extends Controller
             ->latest()
             ->take(5)
             ->get();
+        $todayPatients = Patient::where('clinic_id', $clinicId)
+        ->whereDate('created_at', today())
+        ->count();
 
-        return view('dashboard', compact(
-            'totalPatients',
-            'todayAppointments',
-            'totalEncounters',
-            'recentPatients'
-        ) + ['setupRequired' => false]);
+        $todayEncounters = Encounter::where('clinic_id', $clinicId)
+        ->whereDate('encounter_date', today())
+        ->count();
+
+        $completedAppointmentsToday = Appointment::where('clinic_id', $clinicId)
+         ->whereDate('appointment_date', today())
+         ->where('status', 'completed')
+        ->count();
+
+      return view('dashboard', compact(
+    'totalPatients',
+    'todayAppointments',
+    'totalEncounters',
+    'recentPatients',
+    'todayPatients',
+    'todayEncounters',
+    'completedAppointmentsToday'
+) + ['setupRequired' => false]);
     }
 }

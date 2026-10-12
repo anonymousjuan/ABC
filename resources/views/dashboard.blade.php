@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Health Management Dashboard
         </h2>
+        
     </x-slot>
 
     <div class="py-8">
@@ -44,6 +45,48 @@
                         <p class="text-3xl font-bold text-purple-600">
                             {{ number_format($totalEncounters) }}
                         </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+
+                    <div class="bg-white shadow rounded-lg p-6">
+                     <p class="text-sm text-gray-500">
+                     Patients Registered Today
+                    </p>
+
+                    <p class="text-3xl font-bold">
+                    {{ number_format($todayPatients) }}
+                     </p>
+                 </div>
+
+                <div class="bg-white shadow rounded-lg p-6">
+                <p class="text-sm text-gray-500">
+                 Consultations Today
+                 </p>
+
+                <p class="text-3xl font-bold">
+                {{ number_format($todayEncounters) }}
+                </p>
+                </div>
+
+    <div class="bg-white shadow rounded-lg p-6">
+        <p class="text-sm text-gray-500">
+            Completed Appointments Today
+        </p>
+
+        <p class="text-3xl font-bold">
+            {{ number_format($completedAppointmentsToday) }}
+        </p>
+    </div>
+
+</div>
+                    <div class="bg-white shadow rounded-lg p-6">
+                        <p class="text-sm text-gray-500">
+                            <a href="{{ route('reports.index') }}"
+                            class="inline-block bg-blue-600 text-purple px-4 py-2 rounded-md">
+                             View Reports
+                            </a>
+                        </p>
+                      
                     </div>
 
                 </div>
@@ -94,10 +137,12 @@
                                 </tbody>
                             </table>
                         </div>
+                        
                     @endif
                 </div>
             @endif
 
         </div>
+        
     </div>
 </x-app-layout>
